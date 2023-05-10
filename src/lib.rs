@@ -1,5 +1,3 @@
-
-
 pub struct BigNumber {
     pub bits: Vec<u8>,
 }
@@ -24,7 +22,6 @@ impl BigNumber {
     pub fn to_dec(&self) -> String {
         let mut dec = vec![0];
     
-        // 2 в степени i
         let mut power_of_two = vec![vec![1]];
         for i in 1..=self.bits.len() {
             power_of_two.push(self._add_dec(&power_of_two[i - 1], &power_of_two[i - 1]));
@@ -32,12 +29,10 @@ impl BigNumber {
     
         for i in 0..self.bits.len() {
             if self.bits[i] == 1 {
-                // если бит равен 1, то добавляем соответствующее значение в dec
                 dec = self._add_dec(&dec, &power_of_two[i]);
             }
         }
     
-        // преобразуем вектор dec в строку
         dec.iter().map(|&d| (d + b'0') as char).collect()
     }
 
